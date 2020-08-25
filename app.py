@@ -13,7 +13,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from models import create_classes
 
-from config import username, password
 
 #https://stackabuse.com/using-sqlalchemy-with-flask-and-postgresql/
 app = Flask(__name__)

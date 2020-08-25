@@ -22,7 +22,7 @@ meteorites = create_classes(db)
 migrate = Migrate(app, db)
 
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
 @app.route("/bar")

@@ -11,7 +11,7 @@ from sqlalchemy import create_engine, func
 from flask import Flask, render_template, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from models import create_classes
+#from models import create_classes
 
 
 #https://stackabuse.com/using-sqlalchemy-with-flask-and-postgresql/

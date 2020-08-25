@@ -15,7 +15,7 @@ from models import create_classes
 
 
 #https://stackabuse.com/using-sqlalchemy-with-flask-and-postgresql/
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static',template_folder="templates")
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:Welcome102!@localhost:5432/meteorites_db'
 db = SQLAlchemy(app)
 meteorites = create_classes(db)

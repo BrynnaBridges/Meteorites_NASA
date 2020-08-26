@@ -1,37 +1,35 @@
-// Test that data is there and accurate
-meteoriteData = d3.json("/raw-data").then(function(data){
-  console.log(data);
-  var year = data.year;
-  console.log(year);
-})
-
-// Assign chart to variable
+// Assign the specification to a local variable vlSpec.
+// Bar with interactive legend
 vLSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "width": 1100, 
   "height": 700,
-  "data": {"url": "/raw-data"},
+  "data": {"url": "../static/meteorites.csv"},
+  // "transform": [
+  //   {"filter": {
+  //     "field": "maincategory",
+  //     "oneOf": ["H", "L", "C", "Angrite", "L6", "H4"],
+  //   }
+         
+  //   }],
   "mark": {
         "type": "bar",
         "tooltip": true
     },
   "selection": {
     "Meteorite": {
-      "type": "single", "fields": ["maincategory"],
-      "bind": {"input": "select", "options": [null, "Chondrite", "Achondrite", "Magnetic Iron", "Unknown", "Nonmagnetic Iron", "Mesosiderite", "Pallasite"]}
+      "type": "single", "fields": ["maincategory"], "bind": {"input": "select", "options": [null, "Chondrite", "Achondrite", "Magnetic Iron", "Unknown", "Nonmagnetic Iron", "Mesosiderite", "Pallasite"]}
     }
   },
   "encoding": {
     "x": {
-      "field": "year", "type": "nominal",
-      "axis": {"domain": false, "tickSize": 0, "labelAngle": "-45"},
-      "title": "Year",
+      "timeUnit": "year", "field": "year", "type": "temporal",
+      "axis": {"domain": false, "format": "%Y", "tickSize": 0}
     },
     "y": {
       "aggregate": "count", 
       "field": "maincategory",
       "type": "quantitative",
-      "title": "Count of Meteorites",
       // "stack": "center", "axis": null
     },
     "color": {
@@ -44,8 +42,5 @@ vLSpec = {
     }
   }
 }
-
 // Embed the visualization in the container with id `vis2`
 vegaEmbed('#vis2', vLSpec);
-  
-
